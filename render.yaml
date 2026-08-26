@@ -1,0 +1,17 @@
+# render.yaml — Blueprint: despliegue de un clic en Render (https://render.com)
+services:
+  - type: web
+    name: qswift-terminal
+    runtime: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn qswift_app:app --bind 0.0.0.0:$PORT"
+    envVars:
+      - key: QFCHAIN_RPC
+        value: "http://127.0.0.1:8545"
+      - key: QF_VALIDADOR
+        value: "0x68F9E1D08e410C1d7530813C63E1bce05E8F05Bf"
+      - key: QF_GENESIS
+        value: "0x809b93f029a7b0c1c13f74f323e0f0d636008648"
+      - key: QSWIFT_PINS
+        sync: false
